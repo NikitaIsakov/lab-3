@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- Определение объектов двигателей -->
+    <bean id="petrolEngine" class="ru.example.PetrolEngine">
+        <constructor-arg value="150 HP"/>
+    </bean>
+
+    <bean id="dieselEngine" class="ru.example.DieselEngine">
+        <constructor-arg value="120 HP"/>
+    </bean>
+
+    <!-- Определение объекта автомобиля с зависимостью от двигателя -->
+    <bean id="car" class="ru.example.Car">
+        <constructor-arg ref="petrolEngine"/>
+        <constructor-arg value="Toyota Corolla"/>
+    </bean>
+
+    <!-- Внедрение значения из внешнего файла -->
+    <bean id="carWithDiesel" class="ru.example.Car">
+        <constructor-arg ref="dieselEngine"/>
+        <constructor-arg value=""/>
+        <property name="model" value="Ford F-150"/>
+    </bean>
+</beans>
